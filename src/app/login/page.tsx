@@ -1,21 +1,73 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { userInfo } from "os";
 
 
 const LoginPage = () => {
+
+  const router = useRouter()
 
   const [user, setUser] = useState({
     email: "",
     password: ""
   });
 
+  const [buttonShouldDisable, setButtonDisable] = useState(true);
 
-  const onLogin = async () => {
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+
+    const button_login = document.getElementById('btn-login')
+
+    if (user.email.length > 0 && user.password.length > 0) {
+
+      setButtonDisable(false)
+    } else {
+
+      setButtonDisable(true)
+
+    }
 
 
+    button_login.disabled = buttonShouldDisable
+
+
+  }, [user])
+
+  const onLogin = async (e: any) => {
+
+
+    e.preventDefault();
+
+    setLoading(true);
+    try {
+
+      const response = await axios.post('/api/users/login', user);
+
+      console.log("THEEK HAI ABI TO SB KUCH", response.data);
+
+      if (response.data.success) {
+
+        router.push("/profile")
+
+
+      }
+
+
+    } catch (error: any) {
+
+
+      console.log(" LOGIN PAGE PAR AAYA RE ERROR ", error.message)
+
+    } finally {
+
+      setLoading(false);
+
+    }
 
 
 
@@ -41,7 +93,7 @@ const LoginPage = () => {
 
           <input type="text" placeholder="email" class="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
 
-          <input type="password" placeholder="password" class="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
+          <input type="text" placeholder="password" class="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
 
 
 
@@ -52,7 +104,8 @@ const LoginPage = () => {
 
         <div class='flex flex-row p-8'>
 
-          <button class='bg-emerald-900 text-white p-8 rounded-lg text-3xl' onClick={(e) => onLogin()}>Login</button>
+          <button id='btn-login' class='bg-emerald-900 text-white p-8 rounded-lg text-3xl enabled:opacity-100 disabled:opacity-30' onClick={(e) => onLogin(e)} >
+            {isLoading ? <h1>Processing...</h1> : <h1>Login</h1>}</button>
         </div>
 
 

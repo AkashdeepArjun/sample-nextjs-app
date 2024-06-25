@@ -105,7 +105,7 @@ const SignUpPage = () => {
         <div class='flex flex-row p-8'>
           <button class='bg-emerald-900 text-white p-8 rounded-lg origin-left hover:scale-100 disabled:opacity-30 enabled:opacity-100' id='btn_sign' onClick={(e) => onSignUp(e)}>
 
-            {loading ? <svg class='animate-spin h-5 w-5 mr-5 ' viewBox="0 0 24 24 "></svg> : console.log("dont be pushy run code damn it")}
+            {loading ? <svg className='animate-spin h-5 w-5 mr-5 ' viewBox="0 0 24 24 "></svg> : console.log("dont be pushy run code damn it")}
             {loading ? <h1>Processing...</h1> : <h1>SignUp</h1>}
 
           </button>

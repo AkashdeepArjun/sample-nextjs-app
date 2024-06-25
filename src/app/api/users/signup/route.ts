@@ -1,5 +1,5 @@
 
-'use server'
+"use server"
 
 import connect from '@/dbConfig/db_config'
 
@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
 
     console.log(" SIGNUP ROUTE :aaya re aaya re error", error.message);
     return NextResponse.json({ message: " L lag gye request k " + error.message }, { status: 428 });
+
 
   }
 
