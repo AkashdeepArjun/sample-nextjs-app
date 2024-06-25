@@ -50,12 +50,11 @@ const LoginPage = () => {
 
       console.log("THEEK HAI ABI TO SB KUCH", response.data);
 
-      if (response.data.success) {
 
-        router.push("/profile")
+      router.push("/profile")
 
 
-      }
+
 
 
     } catch (error: any) {
