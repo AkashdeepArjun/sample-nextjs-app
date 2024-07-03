@@ -10,7 +10,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from "bcryptjs"
 import { Sedgwick_Ave_Display } from 'next/font/google'
 import { hash } from 'crypto'
-
+import sendEmail from '@/helpers/mailer'
 connect()
 
 
@@ -55,6 +55,9 @@ export async function POST(req: NextRequest) {
 
 
     const saved_user = await new_user.save()
+
+    await sendEmail({ email, emailType: 'VERIFY', userId: saved_user._id })
+
     return NextResponse.json({ message: "user saved success", yikes: saved_user }, { status: 201 })
 
   } catch (error: any) {
