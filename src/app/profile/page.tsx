@@ -40,7 +40,7 @@ const ProfilePage = () => {
   }, [userInfo])
 
 
-  const handleLogout = async (e) => {
+  const handleLogout = async (e: any) => {
 
     try {
 
@@ -63,15 +63,15 @@ const ProfilePage = () => {
     <>
 
 
-      <div class='bg-pink-900 w-full p-28 flex flex-row place-items-end '>
+      <div className='bg-pink-900 w-full p-28 flex flex-row place-items-end '>
 
 
-        <p class='text-white text-3xl font-serif'>PROFILE PAGE</p>
+        <p className='text-white text-3xl font-serif'>PROFILE PAGE</p>
 
-        <AiOutlineLogout onClick={(e) => handleLogout(e)} class='absolute rounded-full size-32 right-4 mb-4 bg-amber-400 click:scale-1.5 ' />
+        <AiOutlineLogout onClick={(e) => handleLogout(e)} className='absolute rounded-full size-32 right-4 mb-4 bg-amber-400 click:scale-1.5 ' />
 
-        <h2 class="absolute end-1/2 top-0 mt-4 text-center bg-yellow-500 text-green-950 p-4 text-lg" >UserId:{userInfo}</h2>
-        <div class='w-32 h-16 scale-0 origin-center right-4 mb-4 hover:scale-1 transition-transform delay-0 duration-200 '>
+        <h2 className="absolute end-1/2 top-0 mt-4 text-center bg-yellow-500 text-green-950 p-4 text-lg" >UserId:{userInfo}</h2>
+        <div className='w-32 h-16 scale-0 origin-center right-4 mb-4 hover:scale-1 transition-transform delay-0 duration-200 '>
 
           <h6>Logout</h6>
 

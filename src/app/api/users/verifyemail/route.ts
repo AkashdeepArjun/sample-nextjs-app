@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     let current_time = Date.now();
 
 
-    if (user.verifyTokenExpiry < current_time) {
+    if (user != null && user.verifyTokenExpiry != null && user.verifyTokenExpiry < current_time) {
 
       console.log(' TOKEN EXPIRED LOL')
       user.verifyToken = undefined;

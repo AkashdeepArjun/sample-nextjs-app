@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   useEffect(() => {
 
-    const button_login = document.getElementById('btn-login')
+    const button_login = document.getElementById('btn-login') as HTMLButtonElement
 
     if (user.email.length > 0 && user.password.length > 0) {
 
@@ -33,7 +33,11 @@ const LoginPage = () => {
     }
 
 
-    button_login.disabled = buttonShouldDisable
+    if (button_login != null) {
+      button_login.disabled = buttonShouldDisable
+
+
+    }
 
 
   }, [user])
@@ -81,17 +85,17 @@ const LoginPage = () => {
 
 
 
-      <div class='bg-teal-600 p-32 flex-col'>
+      <div className='bg-teal-600 p-32 flex-col' >
 
 
-        <div class='grid grid-rows-2  gap-y-2 *:h-8 *:p-8 *:max-w-sm *:rounded-md' >
+        <div className='grid grid-rows-2  gap-y-2 *:h-8 *:p-8 *:max-w-sm *:rounded-md' >
 
 
 
 
-          <input type="text" placeholder="email" class="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
+          <input type="text" placeholder="email" className="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
 
-          <input type="text" placeholder="password" class="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
+          <input type="text" placeholder="password" className="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
 
 
 
@@ -100,9 +104,9 @@ const LoginPage = () => {
 
         </div>
 
-        <div class='flex flex-row p-8'>
+        <div className='flex flex-row p-8'>
 
-          <button id='btn-login' class='bg-emerald-900 text-white p-8 rounded-lg text-3xl enabled:opacity-100 disabled:opacity-30' onClick={(e) => onLogin(e)} >
+          <button id='btn-login' className='bg-emerald-900 text-white p-8 rounded-lg text-3xl enabled:opacity-100 disabled:opacity-30' onClick={(e) => onLogin(e)} >
             {isLoading ? <h1>Processing...</h1> : <h1>Login</h1>}</button>
         </div>
 

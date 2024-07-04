@@ -23,7 +23,7 @@ const SignUpPage = () => {
 
   const [loading, setLoadingSignal] = useState(false);
 
-  const onSignUp = async (e) => {
+  const onSignUp = async (e: any) => {
 
 
     try {
@@ -58,7 +58,7 @@ const SignUpPage = () => {
   useEffect(() => {
 
 
-    const sign_up_button = document.getElementById('btn_sign');
+    const sign_up_button = document.getElementById('btn_sign') as HTMLButtonElement;
 
     if (user.username.length > 0 && user.email.length > 0 && user.password.length > 0) {
 
@@ -82,18 +82,18 @@ const SignUpPage = () => {
 
 
 
-      <div class='bg-lime-500 p-32 flex-col'>
+      <div className='bg-lime-500 p-32 flex-col'>
 
 
-        <div class='grid grid-cols-2 grid-rows-2  gap-x-1 gap-y-2 *:h-8 *:p-8 *:max-w-sm *:rounded-md' >
+        <div className='grid grid-cols-2 grid-rows-2  gap-x-1 gap-y-2 *:h-8 *:p-8 *:max-w-sm *:rounded-md' >
 
-          <input type="text" placeholder="name" class="col-span-2" onChange={(e) => { setUser({ ...user, username: e.target.value }) }} />
+          <input type="text" placeholder="name" className="col-span-2" onChange={(e) => { setUser({ ...user, username: e.target.value }) }} />
 
 
 
-          <input type="text" placeholder="email" class="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
+          <input type="text" placeholder="email" className="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
 
-          <input type="text" placeholder="password" class="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
+          <input type="text" placeholder="password" className="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
 
 
 
@@ -102,8 +102,8 @@ const SignUpPage = () => {
 
         </div>
 
-        <div class='flex flex-row p-8'>
-          <button class='bg-emerald-900 text-white p-8 rounded-lg origin-left hover:scale-100 disabled:opacity-30 enabled:opacity-100' id='btn_sign' onClick={(e) => onSignUp(e)}>
+        <div className='flex flex-row p-8'>
+          <button className='bg-emerald-900 text-white p-8 rounded-lg origin-left hover:scale-100 disabled:opacity-30 enabled:opacity-100' id='btn_sign' onClick={(e) => onSignUp(e)}>
 
             {loading ? <svg className='animate-spin h-5 w-5 mr-5 ' viewBox="0 0 24 24 "></svg> : console.log("dont be pushy run code damn it")}
             {loading ? <h1>Processing...</h1> : <h1>SignUp</h1>}
