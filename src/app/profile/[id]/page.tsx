@@ -11,7 +11,7 @@ const UserProfilePage = ({ params }: any) => {
       <div className='bg-purple-500 min-h-screen  flex flex-col items-center'>
 
 
-        <p className='text-white text-3xl font-serif'>PROFILE ID :{params.id}</p>
+        <p className='text-white text-3xl font-serif justify-self-end'>PROFILE ID :{params.id}</p>
 
       </div>
 

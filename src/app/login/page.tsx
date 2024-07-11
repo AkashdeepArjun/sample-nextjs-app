@@ -93,10 +93,20 @@ const LoginPage = () => {
 
 
 
-          <input type="text" placeholder="email" className="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value }) }} />
+          <input type="text" placeholder="email" className="col-span-1" onChange={(e) => { setUser({ ...user, email: e.target.value.trim() }) }} />
 
-          <input type="text" placeholder="password" className="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value }) }} />
+          <input type="text" placeholder="password" className="col-span-1" onChange={(e) => { setUser({ ...user, password: e.target.value.trim() }) }} />
 
+          {user.email != "" &&
+
+            <Link className="place-self-start" href={`/recoverAccount/${user.email}`}>
+
+              <p className='cursor-pointer text-white text-xl'>Forgot password?</p>
+            </Link>
+
+
+
+          }
 
 
 
@@ -114,7 +124,7 @@ const LoginPage = () => {
 
 
 
-      </div>
+      </div >
 
 
 

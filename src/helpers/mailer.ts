@@ -15,11 +15,11 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
     const token = await bcryptjs.hash(userId.toString(), 10)
 
     if (emailType == "VERIFY") {
-      await User.findByIdAndUpdate(userId, { verifyToken: token, verifyTokenExpiry: Date.now() + 60000 })
+      await User.findByIdAndUpdate(userId, { verifyToken: token, verifyTokenExpiry: Date.now() + 3600000 })
 
     } else if (emailType == "RESET") {
 
-      await User.findByIdAndUpdate(userId, { forgotPasswordToken: token, forgotPasswordExpiryToken: Date.now() + 60000 })
+      await User.findByIdAndUpdate(userId, { forgotPasswordToken: token, forgotPasswordExpiryToken: Date.now() + 3600000 })
 
     } else {
       console.log("meaw");
@@ -41,12 +41,22 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
       from: 'wadhwaarjun007@gmail.com',
       to: email,
       subject: emailType == 'VERIFY' ? 'verify your email ' : 'reset password ',
-      html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${token}">
+
+      html: emailType == "VERIFY" ? `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${token}">
       Here</a> to ${emailType == 'VERIFY' ? "verify your email" : "reset your password"}
       or copy paste link below in your browser
       ${process.env.DOMAIN}/verifyemail?token=${token}
+      
+</p>`:
 
+
+        `<p>Click <a href="${process.env.DOMAIN}/changePassword?token=${token}">
+      Here</a> to ${emailType == 'VERIFY' ? "verify your email" : "reset your password"}
+      or copy paste link below in your browser
+      ${process.env.DOMAIN}/changePassowrd?token=${token}
+      
 </p>`
+
     }
 
 
